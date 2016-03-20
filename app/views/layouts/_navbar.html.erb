@@ -1,0 +1,27 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#" style="color:  #ffcc00">Fakepinterest</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><%= link_to "Home",   '/' %></li>
+      <li ><%= link_to "Add Picture",   '/photos/new' %></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+          <h4>
+            <% if !current_user %>
+              <%= link_to 'Log-in', new_session_path %>
+            <% else %>
+              Hello <%= current_user.username %>, 
+              <%= link_to 'Log-Out', session_path(current_user.id), method: "DELETE" %>
+            <% end %>
+          </h4>
+      </li>
+      <li> <h4>|</h4> </li>
+      <li>
+        <h4><%= link_to "Sign Up",   '/sign_up' %></h4>
+      </li>
+    </ul>
+  </div>
+</nav>

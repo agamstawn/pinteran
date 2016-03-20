@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-3 col-md-offset-4">
+    <%= form_for @photo do |f| %>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+      <br/>
+      <%= f.label :content %>
+      <%= f.text_area :content, cols: 20, rows: 10 %>
+      <br/>
+      <div class="col-md-12" style="padding-bottom: 15px">
+        <div class="col-md-3">
+          <%= label :photo_status, 'active' %>
+        </div>
+        <div class="col-md-3">
+          <%= f.radio_button :status, "active", class: "radio"%>
+        </div>
+        <div class="col-md-3">
+          <%= label :photo_status, 'off' %>
+        </div>
+        <div class="col-md-3">
+          <%= f.radio_button :status, "off", :checked => true , class: "radio"%>
+        </div>
+      </div>
+      <br/>
+      <%= f.file_field :gambar %>
+      <%= f.submit :submit, class:"btn btn-primary"%>
+    <% end %>
+    <div>
+      <%= link_to "back to index", photos_path %>
+    </div>
+  </div>
+</div>

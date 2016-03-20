@@ -1,0 +1,8 @@
+<% @photos.each do |photo| %>
+<h3><%= photo.title %></h3>
+<p><%= photo.content.truncate(20)  %></p>
+<%= link_to 'read more', photo_path(photo.id) %>
+
+<h4>status : <%= photo.status %></h4>
+<hr/>
+<% end %>

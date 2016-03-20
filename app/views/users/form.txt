@@ -1,0 +1,158 @@
+<%= form_for @user do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  <%= @user.errors[:username].first unless @user.errors[:username].blank? %>
+  <br/>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  <%= @user.errors[:email].first unless @user.errors[:email].blank? %>
+  <br/>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= @user.errors[:password].first unless @user.errors[:password].blank? %>
+  <br/>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+  <%= @user.errors[:password_confirmation].first unless @user.errors[:password_confirmation].blank? %>
+  <br/>
+  <div class="g-recaptcha" data-sitekey="6LfmdRoTAAAAAFJkaQHoZ4If8J756audgGtaVFsr"></div>
+</br>
+<%= recaptcha_tags %>
+</br>
+<%= f.submit %>
+<% end %>
+
+
+
+
+
+
+================================index html photo======================================
+<div class="container">
+  <div class="row">
+    <h4>
+      <% if !current_user %>
+        <%= link_to 'Log-in', new_session_path %>
+      <% else %>
+        Hello <%= current_user.username %>
+        <%= link_to 'Log-Out', session_path(current_user.id), method: "DELETE" %>
+      <% end %>
+    </h4>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 ">
+      <%= will_paginate @photos, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- width of .grid-sizer used for columnWidth -->
+    <% @photos.each do |photo| %>
+      <div class="block">
+        <%= image_tag photo.gambar.url(:medium) %>
+        <h3><%= photo.title %></h3>
+        <p><%= photo.content.truncate(20)  %></p>
+        <%= link_to 'read more', photo_path(photo.id) %>
+        <h4>status : <%= photo.status %></h4>
+        <p>
+          <span><%= link_to 'edit', edit_photo_path(photo.id) %><span>
+          <span> | </span>
+          <span><%= link_to 'delete', photo_path(photo.id), method: "DELETE", data: {confirm: 'Delete this data ? '} %>
+          <span>
+        </p>
+      </div>
+    <% end %>
+
+  </div>  
+</div>
+
+===========================================================image===================================
+<%=link_to image_tag(photo.gambar.url(:thumb)), photo.gambar.url(:original), :popup=>['original_image', 'height=700,width=900'] %>
+        <%= image_tag photo.gambar.url(:medium) %>
+
+        =========================================paginate===========================
+        <div class="row">
+    <div class="col-md-6 col-md-offset-4 ">
+      <%= will_paginate @photos, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
+
+
+  ==========================================================index html=================================
+   url: photos_path, html: { multipart: true } form
+
+   ========================================index html page=============================================
+
+
+
+        ============================Modal=========================================================
+
+        <div class="row">
+    <div class="text-center">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addphoto">
+        Add Photo
+      </button>
+    </div>
+  </div>
+  <br>
+  <hr>
+  <div class="row" id="container_photos">
+    <%= render @photos %>
+  </div>
+  <%= form_for @photo, url: photos_path, html: { multipart: true } do |f| %>
+    <!-- Modal -->
+    <div class="modal fade" id="addphoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Photo</h4>
+          </div>
+          <div class="modal-body">
+            <div class="field">
+              <%= f.label :title %><br/>
+              <%= f.text_field :title, class: "form-control" %>
+              <%= @photo.errors[:title].first unless @photo.errors[:title].blank? %>
+            </div>
+            <div class="field">
+              <%= f.label :content %><br/>
+              <%= f.text_area :content, cols: 20, rows: 10 %>
+              <%= @photo.errors[:content].first unless @photo.errors[:content].blank? %>
+            </div>
+            <%= f.label :status %><br/>
+            <div class="col-md-12" style="padding-bottom: 15px">
+              <div class="col-md-3">
+                <%= label :photo_status, 'active' %>
+              </div>
+              <div class="col-md-3">
+                <%= f.radio_button :status, "active"%>
+              </div>
+              <div class="col-md-3">
+                <%= label :photo_status, 'off' %>
+              </div>
+              <div class="col-md-3">
+                <%= f.radio_button :status, "off", :checked => true , class: "radio"%>
+              </div>
+            </div>
+            <br/>
+            <div class="field">
+              <%= f.file_field :gambar %>
+              <%= @photo.errors[:gambar].first unless @photo.errors[:gambar].blank? %>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="col-md-12">
+              <div class="col-md-6">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="addphotosclose">Close</button>
+              </div>
+              <div class="col-md-6">
+                <%= f.submit :submit, class: "btn btn-primary" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br/>
+  <% end %>

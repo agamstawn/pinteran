@@ -1,0 +1,11 @@
+package = Axlsx::Package.new
+workbook = package.workboook
+@students = Student.all
+workbook.add_worksheet(name: "Basic work sheet") do |sheet|
+  sheet.add_row ["First Name", "Last Name", "Marks", "Percentage", "Grade", "Remark"]
+  @students.each do |st|
+    sheet.add_row [st.fname, st.lname, st.marks, st.percentage, st.grade, st.remark]
+  end
+end
+pacakege.serialize
+send_file("#{Rails.root}/tmp/basic.xlsx", filename: "Basic.xlsx", type: "application/vnd.ms-excel")
