@@ -18,7 +18,7 @@ class UsersController < ApplicationController
         flash[:notice] = "activation instruction fails send to your email"
       end
       flash[:notice] = "activation instruction has send to #{@user.email}"
-      redirect_to root_url
+      redirect_to articles_path
     else
       flash[:error] = "data not valid"
       render "new"

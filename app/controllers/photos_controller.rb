@@ -24,6 +24,8 @@ class PhotosController < ApplicationController
 
   def show
     @photo = Photo.find_by_id(params[:id])
+    @comments = @article.comments.order("id desc")
+    @comment = Comment.new
   end
 
   def update
