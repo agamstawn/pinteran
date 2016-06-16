@@ -3,15 +3,16 @@
     <%= text_field_tag :search, params[:search]%>
     <%= submit_tag "Search by Title" %>
   <% end %>
-  <div class="row">
+   <div class="row">
     <div class="col-md-6 col-md-offset-3 ">
       <%= will_paginate @photos, renderer: BootstrapPagination::Rails %>
     </div>
   </div>
+
   <div class="container">
     <!-- width of .grid-sizer used for columnWidth -->
     <% @photos.each do |photo| %>
-      <div class="block text-center">
+      <div class="block">
         <%=link_to image_tag(photo.gambar.url(:medium)), photo.gambar.url(:original), :popup=>['original_image', 'height=300,width=600'] %>
         <h3><%= photo.title %></h3>
         <p><%= photo.content.truncate(20)  %></p>
@@ -19,13 +20,11 @@
         <h4>status : <%= photo.status %></h4>
         <p>
           <span><%= link_to 'edit', edit_photo_path(photo.id) %><span>
-          <span> | </span>
-          <span>
-            <%= link_to 'delete', photo_path(photo.id), method: "DELETE", data: {confirm: 'Delete this data ? '} %>
-          <span>
-        </p>
-        
+              <span> | </span>
+              <span><%= link_to 'delete', photo_path(photo.id), method: "DELETE", data: {confirm: 'Delete this data ? '} %>
+                <span>
+                </p>
       </div>
     <% end %>
-   </div> 
+  </div>
 </div>
