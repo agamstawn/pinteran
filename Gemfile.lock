@@ -93,7 +93,6 @@ GEM
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     multi_json (1.11.2)
-    mysql2 (0.4.3)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     paperclip (4.3.6)
@@ -102,6 +101,7 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
+    pg (0.20.0)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -139,7 +139,7 @@ GEM
     rake (11.1.1)
     rdoc (4.2.2)
       json (~> 1.4)
-    rmagick (2.15.4)
+    rmagick (2.16.0)
     rubyzip (1.0.0)
     sass (3.4.21)
     sass-rails (5.0.4)
@@ -194,8 +194,8 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
   jquery-rails
-  mysql2 (>= 0.3.13, < 0.5)
   paperclip (~> 4.3, >= 4.3.6)
+  pg (~> 0.15)
   rails (= 4.2.6)
   rails_12factor
   recaptcha!
@@ -210,5 +210,8 @@ DEPENDENCIES
   will_paginate (~> 3.0.6)
   will_paginate-bootstrap (~> 1.0, >= 1.0.1)
 
+RUBY VERSION
+   ruby 2.2.3p173
+
 BUNDLED WITH
-   1.11.2
+   1.14.6

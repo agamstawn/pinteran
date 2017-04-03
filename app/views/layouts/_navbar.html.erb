@@ -1,26 +1,31 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#" style="color:  #ffcc00">Fakepinterest</a>
+      <a class="navbar-brand" href="#" style="color: floralwhite; font-family:'verdana';"><strong>Bidadari Pagi<span class="glyphicon glyphicon-heart"></span></span></strong></a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><%= link_to "Home",   '/' %></li>
-      <li ><%= link_to "Add Picture",   '/photos/new' %></li>
+      <li class="active"><%= link_to '<i class="glyphicon glyphicon-home" style="font-size:28px">                  
+                    </i>'.html_safe,  '/' %></li>
+      <li ><%= link_to '<i class="glyphicon glyphicon-plus-sign" style="font-size:28px">                  
+                    </i>'.html_safe,   '/photos/new' %></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li>
           <h4>
             <% if !current_user %>
-              <%= link_to 'Log-in', new_session_path %>
+              <%= link_to '<i class="glyphicon glyphicon-log-in" style="font-size:28px">                  
+                    </i>'.html_safe, new_session_path %>
             <% else %>
               Hello <%= current_user.username %>, 
-              <%= link_to 'Log-Out', session_path(current_user.id), method: "DELETE" %>
+              <%= link_to '<i class="glyphicon glyphicon-log-out" style="font-size:28px">                  
+                    </i>'.html_safe, session_path(current_user.id), method: "DELETE" %>
             <% end %>
           </h4>
       </li>
       <li> <h4>|</h4> </li>
       <li>
-        <h4><%= link_to "Sign Up",   '/sign_up' %></h4>
+        <h4><%= link_to '<i class="glyphicon glyphicon-registration-mark" style="font-size:28px">                  
+                    </i>'.html_safe,   '/sign_up' %></h4>
       </li>
     </ul>
   </div>

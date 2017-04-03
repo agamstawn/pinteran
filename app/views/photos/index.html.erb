@@ -10,22 +10,25 @@
   </div>
   <div class="container">
     <!-- width of .grid-sizer used for columnWidth -->
-    <% @photos.each do |photo| %>
+     <% @photos.each do |photo| %>
+
       <div class="block text-center">
-        <%=link_to image_tag(photo.gambar.url(:medium)), photo.gambar.url(:original), :popup=>['original_image', 'height=300,width=600'] %>
+        
+        <%=link_to image_tag(photo.gambar.url(:medium), style: "border-radius: 15px;"), photo.gambar.url(:original), :popup=>['original_image', 'height=auto,width=100%'] %>
         <h3><%= photo.title %></h3>
-        <p><%= photo.content.truncate(20)  %></p>
-        <%= link_to 'read more', photo_path(photo.id) %>
-        <h4>status : <%= photo.status %></h4>
+        <p><%= photo.content %><%#= photo.content.truncate(20)  %></p>
+        <%#= link_to 'read more', photo_path(photo.id) %>
+        <!-- <h4>status : <%= photo.status %></h4> -->
+         <% if (controller_name.eql? 'photos' and (action_name.eql? 'profile')) %>
         <p>
-          <span><%= link_to 'edit', edit_photo_path(photo.id) %><span>
+          <span class="glyphicon glyphicon-pencil"><%= link_to '', edit_photo_path(photo.id) %><span>
           <span> | </span>
-          <span>
-            <%= link_to 'delete', photo_path(photo.id), method: "DELETE", data: {confirm: 'Delete this data ? '} %>
+          <span class="glyphicon glyphicon-trash">
+            <%= link_to '', photo_path(photo.id), method: "DELETE", data: {confirm: 'Delete this data ? '} %>
           <span>
         </p>
-        
-      </div>
+       <% end %>
+      </div>  
     <% end %>
    </div> 
 </div>

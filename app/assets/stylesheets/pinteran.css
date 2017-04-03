@@ -3,7 +3,7 @@
 html, body { 
   font-family: sans-serif; 
   margin: 0px;
-  background: #444;
+  background: #fcf8e3/*hotpink*/;
 }
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
@@ -15,24 +15,50 @@ li{
   padding: 15px;
 }
 label, h4 {
-  color: #fff;
+  color: hotpink;
   font-weight: bold;  
 }
 input {
   height: auto !important;
 }
+a {
+    color: floralwhite;
+    text-decoration: none;
+}
+.navbar-inverse .navbar-nav>li>a {
+    color: whitesmoke;
+}
+.navbar-inverse {
+    border-color: #fcf8e3;
+}
 .container{
   padding: 10px;
 }
+
+.container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: deeppink;
+}
 .block{
-  background: #ffcc00;
+  background: lightpink;
   display: inline-block;
   width: 360px;
   padding: 10px;
   margin: 10px;
   border-radius: 10px;
+  color: deeppink;
 }
-
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+    color: white;
+    background-color: lightpink;
+}
+.navbar-inverse .navbar-nav > .active > a {
+    background-image: linear-gradient(to bottom, lightpink 68%, floralwhite 100%);
+    border-radius: 10px;
+}
 /* ---- grid ---- */
 
 .grid {
@@ -63,6 +89,19 @@ input {
   border-radius: 5px;
 }
 
+@media (min-width: 768px){
+  .navbar-right {
+      float: right!important;
+      margin-right: 80px;
+  }
+}
+
+@media (min-width: 768px){
+  .navbar-nav {
+    float: left;
+    margin-left: 40px;
+  }
+}
 .grid-item--width2 { width:  40%; }
 .grid-item--width3 { width:  60%; }
 
